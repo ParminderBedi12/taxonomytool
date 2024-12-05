@@ -1,26 +1,22 @@
-# client-hewlett-packard-taxonomator
-Hewlett Packard Taxonomy tool
+# monorepo JS projects
 
-# Deployment
-- Create a firebase project
-- Install yarn from the js directory
-```
-yarn install
-```
-- Build from the genesis-ui directory
-```
-make build
-```
-- Deploy from the genesis-ui directory (make sure the project is set or set it via the flag)
-```bash
-firebase deploy
-```
-- Deploy the BQ extension and set it to sync the generatedTaxonomy firebase documents
-- Create the first user: by creating a document in firebase in taxonomyUser/<UserID> 
-```
-admin: true (bool)
-clients: {} (map)
-superAdmin: true (bool)
-```
+This directory contains JS projects as workspaces under one Yarn package.
 
-Grant the new user a grant to taxonomy by using a custom app or changing the gui code
+### Adding a new JS project
+
+Follow the steps below:
+- [ ] Add the new project root as a directory under the `projects`
+- [ ] Add it to the `workspaces` section of the `package.json` in this directory, e.g. `projects/<new project name>`
+  ```yaml
+  - save_cache:
+      key: npm-{{ .Branch }}-{{ .Revision }}
+      paths:
+        - ./js/node_modules
+        # ...
+        - ./js/projects/<new project name>
+
+  ```
+- [ ] Add a `build` script to the new project `package.json`. The root project runs `yarn build` for each child workspace
+- [ ] For any dependencies which should absolutely **not** be hoisted to the root or shared with other workspaces in the project, add them to the root `package.json` in this directory. See docs on [nohoist](https://yarnpkg.com/blog/2018/02/15/nohoist/)
+- [ ] **IMPORTANT**: Make sure your project **avoids circular dependencies**. Otherwise, you can import it by including the name in its `package.json` as a dependency in any other project in this workspace.
+
