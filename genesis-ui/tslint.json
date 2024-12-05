@@ -1,0 +1,27 @@
+{
+  "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
+  "rules": {
+    "comma-dangle": [2, "always-multiline"],
+    "interface-name": {
+      "options": ["never-prefix"]
+    },
+    "jsx-no-lambda": false,
+    "max-classes-per-file": false,
+    "member-ordering": false,
+    "no-console": false,
+    "no-duplicate-variable": true,
+    "object-literal-sort-keys": false
+  },
+  "jsRules": {
+    "comma-dangle": [2, "always-multiline"],
+    "no-console": false,
+    "no-duplicate-variable": true,
+    "no-string-literal": false,
+    "no-shadowed-variable": false,
+    "object-literal-sort-keys": false,
+    "variable-name": false
+  },
+  "linterOptions": {
+    "exclude": ["config/**/*.js", "node_modules/**/*", "coverage/lcov-report/*.js", "src/protobuf/**/*"]
+  }
+}

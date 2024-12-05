@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Forma-DJR';
+  src: url('./assets/fonts/Forma-DJR/Micro-Regular.1fed104.woff2')
+      format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Forma-DJR';
+}

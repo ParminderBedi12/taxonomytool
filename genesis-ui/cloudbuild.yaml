@@ -1,0 +1,45 @@
+timeout: 1800s
+
+substitutions:
+  _FIREBASE_PROJECT_ID: ''
+  _DIR: 'js/projects/genesis-ui'
+
+options:
+  machineType: 'N1_HIGHCPU_8'
+
+steps:
+  # Bazel prerun
+  - name: 'gcr.io/mh-shared-images/base-image'
+    args:
+      - .cloudbuild/cloudbuildPreRun.bash
+    id: pre-run-step
+    waitFor: ['-']
+
+  # The decrypted env file is always copied to .env.local for production,
+  # which is what gets used in the build
+  - name: ubuntu
+    id: copy-env
+    dir: ${_DIR}
+    args:
+      - cp
+      - .env.${PROJECT_ID}
+      - .env.local
+    waitFor: ['pre-run-step']
+
+    # Bazel build functions
+  - name: 'gcr.io/mh-shared-images/base-image'
+    args: ['yarn', 'run', 'build']
+    id: bazel-build-functions
+    waitFor: [bazel-build]
+    dir: 'js/projects/genesis-ui/functions'
+
+  # Built from https://github.com/GoogleCloudPlatform/cloud-builders-community/tree/master/firebase
+  - name: gcr.io/${PROJECT_ID}/firebase
+    id: deploy
+    dir: ${_DIR}
+    waitFor: [bazel-build, bazel-build-functions]
+    args:
+      - -P
+      - ${_FIREBASE_PROJECT_ID}
+      - deploy
+      - --debug
