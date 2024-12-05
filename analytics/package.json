@@ -1,0 +1,36 @@
+{
+  "name": "@mightyhive/analytics",
+  "version": "1.0.1-snapshot",
+  "description": "Analytics library wrapper",
+  "main": "lib/index.js",
+  "private": true,
+  "scripts": {
+    "build": "rm -rf lib && tsc",
+    "watch": "tsc -w",
+    "doc": "rm -rf docs && typedoc --options ../../typedoc.config.js ./src",
+    "preinstall": "rm -rf lib",
+    "install": "tsc",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "dependencies": {
+    "analytics": "0.7.18",
+    "prop-types": "15.7.2",
+    "jest": "27.4.3",
+    "jest-dom": "4.0.0",
+    "ts-jest": "27.0.7"
+  },
+  "devDependencies": {
+    "@types/react": "17.0.14",
+    "@types/jest": "27.0.3",
+    "@testing-library/react": "12.1.2",
+    "@testing-library/jest-dom": "5.15.1",
+    "ts-node": "10.4.0"
+  },
+  "peerDependencies": {
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-router-dom": "5.2"
+  }
+}
+
