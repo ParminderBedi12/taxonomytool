@@ -1,0 +1,33 @@
+{
+  "name": "@mightyhive/taxonomy",
+  "version": "1.0.1-snapshot",
+  "private": true,
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "rm -rf lib && tsc",
+    "watch": "tsc -w",
+    "doc": "rm -rf docs && typedoc --options ../../typedoc.config.js ./src",
+    "preinstall": "rm -rf lib",
+    "install": "tsc",
+    "test": ":"
+  },
+  "dependencies": {
+    "firebase": "8.7.1",
+    "@material-ui/core": "4.11.4",
+    "@material-ui/icons": "4.11.2",
+    "@material-ui/styles": "4.11.4",
+    "@mightyhive/analytics": "1.0.1-snapshot",
+    "@mightyhive/material-components": "1.0.1-snapshot",
+    "react": "17.0.2",
+    "react-beautiful-dnd": "13.1.0",
+    "react-dom": "17.0.2",
+    "react-router-dom": "5.2"
+  },
+  "devDependencies": {
+    "@types/react": "17.0.14",
+    "@types/react-beautiful-dnd": "13.1.2",
+    "@types/react-dom": "17.0.9",
+    "@types/react-router-dom": "5.1.8"
+  }
+}
+
